@@ -1,66 +1,87 @@
-var userName = prompt("Enter Your Name");
-var Gender = prompt("Enter Your Gender(M , F)");
-if (Gender  =="M" )
-{
-userName = "Mr." + userName
-}
-else if (Gender =="F")
-userName = "Ms." + userName
-else{
-prompt("Please Choose Your Gender Again")
-var Gender = prompt("Enter Your Gender(M , F)");
-if (Gender  =="M" )
-{
-userName = "Mr" + userName
-}
-else if (Gender =="F")
-userName = "Ms" + userName
-else
-prompt("Please Choose Your Gender Again")
+'use strict';
 
-}
-var Age = prompt("Enter Your Age");
-if (Age <= 0 )
-{
-    alert("Age should be higehr than 0")
-prompt(Age);
-}
-var skip = prompt(confirm("Do you want to skip"))
-prompt("welcome " + userName);
-prompt("Y or N Questions")
-function questions(question1 , question2, question3) {
-var question1 = prompt("Are you organised person")
-if (question1  =="Y" )
-question1 = "yes"
-else if (question1 =="N")
-question1 = "No"
-else
- question1= "invalid";
 
-var question2 = prompt("do you like programming")
-if (question2  =="Y" )
-{
-question2 = "Yes"
-}
-else if (question2 =="N")
- question2 = "No"
-else
-  question2= "invalid"
+let age,userName,gender, userAnswers= new Array(3);
 
-var question3 = prompt("are you familiar with Djnago")
-if (question3  =="Y" )
-{
-question3 = "Yes"
-}
-else if (question3 =="N")
-question3 = "No"
-else
- question3= "invalid"
-}
+getUserName();
+getUserGender();
+getUserAge();
+confirmWelcome();
 questions();
-for (var i=0 ; i<questions.length ; i++)
-console.log(questions[i])
+pringToConsole();
 
 
 
 
+//Functions
+function getUserName() {
+    userName = prompt(` Enter Your Name : `);
+}
+
+function getUserGender() {
+    gender = prompt(` Enter Your Gender M/F : `);
+}
+
+function getUserAge() {    
+    age = prompt(` Enter Your Age : `);
+    if (age<=0)
+        warninng(age);
+ 
+}
+
+function warninng(age) {
+    alert(`Sorry Your Age  : ${age} Is Too Small`);
+}
+
+function confirmWelcome(age) {
+    let confirmUser = confirm(`Would you like to skip ?  `);
+    if (!confirmUser) 
+         welcomeMessage();
+    
+
+}
+function welcomeMessage() {
+
+    switch (gender) {
+        case "M":
+            alert(`Welcome Mr. ${userName}`);
+            break;
+        case "F":
+                alert(`Welcome Ms. ${userName}`);
+                break;
+        default:
+            alert(`Welcome. ${userName}`);
+            break;
+    }
+
+}
+
+function questions() {
+
+    let question=[
+        `Do You Like Reading (Yes/No) : ` ,
+        `Do You Like Music (Yes/No) :` ,
+        `Do You Like Gaming (Yes/No) : `] ;
+
+    let value ;
+    for (let index = 0; index < question.length; index++) {
+        value=prompt(question[index]);
+        let flag =false;
+
+        while (!flag) {
+        value.length==0 ? value=prompt(`this is invalid Answer,try again `+question[index]): flag = true;
+        }
+        userAnswers[index] = value;
+    
+    
+    }
+}
+
+function pringToConsole() {
+    for (let index = 0; index < userAnswers.length; index++) {
+        console.log(userAnswers[index]);
+        
+    }
+        
+        
+}
